@@ -1,0 +1,20 @@
+{
+    "name": "gongzirong/matomo-reporter",
+    "description": "a matomo report sdk",
+    "authors": [
+        {
+            "name": "bear",
+            "email": "18819259245@163.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.5",
+        "symfony/serializer": "^5.0",
+        "symfony/property-access": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MatmomoReport\\" : "src/"
+        }
+    }
+}
