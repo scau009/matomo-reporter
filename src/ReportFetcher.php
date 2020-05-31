@@ -3,19 +3,14 @@
 namespace MatmomoReport;
 
 use GuzzleHttp\Client;
+use MatmomoReport\Api\Actions;
 use MatmomoReport\Exception\InvalidIdSiteException;
 use MatmomoReport\Exception\InvalidRequestException;
 use MatmomoReport\Exception\InvalidTokenException;
-use MatmomoReport\Request\IRequest;
-use MatmomoReport\Response\ActionResponses\GetSiteSearchKeywordsResponse;
-use MatmomoReport\Response\IResponse;
 
 class ReportFetcher{
 
-    /**
-     * @var IRequest $request
-     */
-    private $request;
+    use Actions;
 
     /**
      * @var string $requestHost
@@ -32,48 +27,42 @@ class ReportFetcher{
      */
     private $token;
 
+    protected $client;
+
     public function __construct(string $requestHost,string $idSite,string $token)
     {
         $this->requestHost = $requestHost;
         $this->token = $token;
         $this->idSite = $idSite;
+        $this->client = new Client();
     }
 
     /**
-     * @return GetSiteSearchKeywordsResponse
+     * @param string $method
+     * @param array $params
+     * @return string
      * @throws InvalidIdSiteException
-     * @throws InvalidRequestException
      * @throws InvalidTokenException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function fetch()
+    private function fetch(string $method,array $params)
     {
         if (empty($this->token)) {
             throw new InvalidTokenException();
         }
-        if (empty($this->request)) {
-            throw new InvalidRequestException();
-        }
         if (empty($this->idSite)) {
             throw new InvalidIdSiteException();
         }
-        $this->request->setIdSite($this->idSite)->setTokenAuth($this->token);
-        return $this->request->fetch($this);
+        $params['idSite'] = $this->idSite;
+        $params['token_auth'] = $this->token;
+
+        $response = $this->client->request($method,$this->requestHost,[
+            'query' => $params,
+        ]);
+
+        return $response->getBody()->getContents();
     }
 
-
-    public function setRequest(IRequest $request)
-    {
-        $this->request = $request;
-        return $this;
-    }
-
-    /**
-     * @return IRequest
-     */
-    public function getRequest(): IRequest
-    {
-        return $this->request;
-    }
 
     /**
      * @return string

@@ -12,11 +12,14 @@ class GetSiteSearchKeywordsRequest extends BaseRequest
     protected $method = 'Actions.getSiteSearchKeywords';
 
     /**
-     * @param array $fetchResult
+     * @param string $fetchResult
      * @return GetSiteSearchKeywordsResponse
      */
-    public function getResponse(array $fetchResult = [])
+    public function getResponse(string $fetchResult = '')
     {
+        $fetchResult = json_decode($fetchResult);
+        $this->setPageTotal(count($fetchResult));
+        $this->setRecordTotal($this->getRecordTotal() + $this->getPageTotal());
         return new GetSiteSearchKeywordsResponse($this,GetSiteSearchKeywordsEntity::class,$fetchResult);
     }
 
@@ -34,13 +37,5 @@ class GetSiteSearchKeywordsRequest extends BaseRequest
     public function setDate(string $date)
     {
         $this->date = $date;
-    }
-
-    /**
-     * @param string $segment
-     */
-    public function setSegment(string $segment)
-    {
-        $this->segment = $segment;
     }
 }

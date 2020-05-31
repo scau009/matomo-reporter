@@ -1,7 +1,6 @@
 <?php
 namespace MatmomoReport\Response;
 
-use MatmomoReport\Entity\Action\GetSiteSearchKeywordsEntity;
 use MatmomoReport\Request\BaseRequest;
 use MatmomoReport\Request\IRequest;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
