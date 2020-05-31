@@ -2,6 +2,7 @@
 namespace MatmomoReport\Request;
 
 
+use MatmomoReport\ReportFetcher;
 use MatmomoReport\Response\IResponse;
 
 interface IRequest
@@ -10,9 +11,11 @@ interface IRequest
 
     public function getAllParams() : array;
 
-    public function getResponse(array $fetchResult = null) : IResponse;
-
     public function setIdSite(string $idSite): self;
 
     public function setTokenAuth(string $tokenAuth): self;
+
+    public function getFilterLimit();
+
+    public function next(): self;
 }

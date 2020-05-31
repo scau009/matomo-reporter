@@ -7,6 +7,8 @@ use MatmomoReport\Exception\InvalidIdSiteException;
 use MatmomoReport\Exception\InvalidRequestException;
 use MatmomoReport\Exception\InvalidTokenException;
 use MatmomoReport\Request\IRequest;
+use MatmomoReport\Response\ActionResponses\GetSiteSearchKeywordsResponse;
+use MatmomoReport\Response\IResponse;
 
 class ReportFetcher{
 
@@ -30,21 +32,18 @@ class ReportFetcher{
      */
     private $token;
 
-    /**
-     * @var Client $client
-     */
-    private $client;
-
     public function __construct(string $requestHost,string $idSite,string $token)
     {
         $this->requestHost = $requestHost;
         $this->token = $token;
         $this->idSite = $idSite;
-        $this->client = new Client();
     }
 
     /**
-     * @return mixed|void|null
+     * @return GetSiteSearchKeywordsResponse
+     * @throws InvalidIdSiteException
+     * @throws InvalidRequestException
+     * @throws InvalidTokenException
      */
     public function fetch()
     {
@@ -58,38 +57,47 @@ class ReportFetcher{
             throw new InvalidIdSiteException();
         }
         $this->request->setIdSite($this->idSite)->setTokenAuth($this->token);
-        if ($this->request->getRequestMethod() == "GET") {
-            return $this->fetchGet();
-        }else if ($this->request->getRequestMethod() == "POST") {
-            return $this->fetchPost();
-        }else{
-            return $this->fetchGet();
-        }
+        return $this->request->fetch($this);
     }
 
-    private function fetchGet()
-    {
-        $response = $this->client->request($this->request->getRequestMethod(),$this->requestHost,[
-            'query' => $this->request->getAllParams(),
-        ]);
-        $content = $response->getBody()->getContents();
-        if (empty($content)) {
-            return $this->request->getResponse();
-        }else{
-            return $this->request->getResponse(json_decode($content));
-        }
-    }
-
-    private function fetchPost()
-    {
-        // todo 暂时不支持（好像不需要 post请求）
-        return false;
-    }
 
     public function setRequest(IRequest $request)
     {
         $this->request = $request;
         return $this;
     }
+
+    /**
+     * @return IRequest
+     */
+    public function getRequest(): IRequest
+    {
+        return $this->request;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRequestHost(): string
+    {
+        return $this->requestHost;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdSite(): string
+    {
+        return $this->idSite;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
 
 }

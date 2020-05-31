@@ -3,17 +3,21 @@ namespace MatmomoReport\Request\ActionRequests;
 
 
 use MatmomoReport\Entity\Action\GetSiteSearchKeywordsEntity;
-use MatmomoReport\Request\AbstractRequest;
+use MatmomoReport\Request\BaseRequest;
 use MatmomoReport\Response\ActionResponses\GetSiteSearchKeywordsResponse;
 use MatmomoReport\Response\IResponse;
 
-class GetSiteSearchKeywordsRequest extends AbstractRequest
+class GetSiteSearchKeywordsRequest extends BaseRequest
 {
     protected $method = 'Actions.getSiteSearchKeywords';
 
-    public function getResponse(array $fetchResult = null): IResponse
+    /**
+     * @param array $fetchResult
+     * @return GetSiteSearchKeywordsResponse
+     */
+    public function getResponse(array $fetchResult = [])
     {
-        return new GetSiteSearchKeywordsResponse($fetchResult,GetSiteSearchKeywordsEntity::class);
+        return new GetSiteSearchKeywordsResponse($this,GetSiteSearchKeywordsEntity::class,$fetchResult);
     }
 
     /**
@@ -39,5 +43,4 @@ class GetSiteSearchKeywordsRequest extends AbstractRequest
     {
         $this->segment = $segment;
     }
-
 }
