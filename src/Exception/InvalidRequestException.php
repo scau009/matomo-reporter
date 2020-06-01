@@ -1,5 +1,5 @@
 <?php
-namespace MatmomoReport\Exception;
+namespace MatomoReport\Exception;
 
 
 class InvalidRequestException extends BaseException

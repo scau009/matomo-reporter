@@ -1,9 +1,9 @@
 <?php
-namespace MatmomoReport\Response\ActionResponses;
+namespace MatomoReport\Response\Actions;
 
-use MatmomoReport\Entity\Action\GetSiteSearchKeywordsEntity;
-use MatmomoReport\Request\BaseRequest;
-use MatmomoReport\Response\CommentListResponse;
+use MatomoReport\Entity\Actions\SiteSearchKeywordsEntity;
+use MatomoReport\Request\BaseRequest;
+use MatomoReport\Response\CommentListResponse;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Serializer;
 class GetSiteSearchKeywordsResponse extends CommentListResponse
 {
     /**
-     * @return GetSiteSearchKeywordsEntity[]
+     * @return SiteSearchKeywordsEntity[]
      */
     public function getList(): array
     {

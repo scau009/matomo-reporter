@@ -1,7 +1,7 @@
 <?php
 
 
-namespace MatmomoReport\Request;
+namespace MatomoReport\Request;
 
 
 trait QueryParams
@@ -57,7 +57,7 @@ trait QueryParams
 
     protected $filterSortColumn = '';
 
-    protected $flat = 1;
+    protected $flat = 0;
 
     public function getAllParams(): array
     {
@@ -88,4 +88,126 @@ trait QueryParams
     {
         return $this->filterLimit;
     }
+
+
+    /**
+     * @param string $period
+     */
+    public function setPeriod(string $period)
+    {
+        $this->period = $period;
+    }
+
+    /**
+     * @param string $date
+     */
+    public function setDate(string $date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @param string $queryMethod
+     */
+    public function setQueryMethod(string $queryMethod)
+    {
+        $this->queryMethod = $queryMethod;
+    }
+
+    /**
+     * @param string $module
+     */
+    public function setModule(string $module)
+    {
+        $this->module = $module;
+    }
+
+    /**
+     * @param string $method
+     */
+    public function setMethod(string $method)
+    {
+        $this->method = $method;
+    }
+
+    /**
+     * @param string $segment
+     */
+    public function setSegment(string $segment)
+    {
+        $this->segment = $segment;
+    }
+
+    /**
+     * @param string $format
+     */
+    public function setFormat(string $format)
+    {
+        $this->format = $format;
+    }
+
+    /**
+     * @param string $label
+     */
+    public function setLabel(string $label)
+    {
+        $this->label = $label;
+    }
+
+    /**
+     * @param string $idSubtable
+     */
+    public function setIdSubtable(string $idSubtable)
+    {
+        $this->idSubtable = $idSubtable;
+    }
+
+    /**
+     * @param string $filterSortOrder
+     */
+    public function setFilterSortOrder(string $filterSortOrder)
+    {
+        $this->filterSortOrder = $filterSortOrder;
+    }
+
+    /**
+     * @param string $filterOffset
+     */
+    public function setFilterOffset(string $filterOffset)
+    {
+        $this->filterOffset = $filterOffset;
+    }
+
+    /**
+     * @param int $filterLimit
+     */
+    public function setFilterLimit(int $filterLimit)
+    {
+        $this->filterLimit = $filterLimit;
+    }
+
+    /**
+     * @param string $abandonedCarts
+     */
+    public function setAbandonedCarts(string $abandonedCarts)
+    {
+        $this->abandonedCarts = $abandonedCarts;
+    }
+
+    /**
+     * @param string $filterSortColumn
+     */
+    public function setFilterSortColumn(string $filterSortColumn)
+    {
+        $this->filterSortColumn = $filterSortColumn;
+    }
+
+    /**
+     * @param int $flat
+     */
+    public function setFlat(int $flat)
+    {
+        $this->flat = $flat;
+    }
+
 }

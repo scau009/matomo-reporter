@@ -1,5 +1,5 @@
 <?php
-namespace MatmomoReport\Request;
+namespace MatomoReport\Request;
 
 use GuzzleHttp\Client;
 

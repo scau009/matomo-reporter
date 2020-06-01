@@ -1,8 +1,8 @@
 <?php
-namespace MatmomoReport\Response;
+namespace MatomoReport\Response;
 
 
-use MatmomoReport\Exception\BaseException;
+use MatomoReport\Exception\BaseException;
 
 class ExceptionResponse implements IResponse
 {

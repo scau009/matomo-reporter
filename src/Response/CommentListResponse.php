@@ -1,8 +1,8 @@
 <?php
-namespace MatmomoReport\Response;
+namespace MatomoReport\Response;
 
-use MatmomoReport\Request\BaseRequest;
-use MatmomoReport\Request\IRequest;
+use MatomoReport\Request\BaseRequest;
+use MatomoReport\Request\IRequest;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;

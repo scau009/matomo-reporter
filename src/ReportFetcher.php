@@ -1,16 +1,18 @@
 <?php
 
-namespace MatmomoReport;
+namespace MatomoReport;
 
 use GuzzleHttp\Client;
-use MatmomoReport\Api\Actions;
-use MatmomoReport\Exception\InvalidIdSiteException;
-use MatmomoReport\Exception\InvalidRequestException;
-use MatmomoReport\Exception\InvalidTokenException;
+use MatomoReport\Api\Actions;
+use MatomoReport\Api\Contents;
+use MatomoReport\Api\Goals;
+use MatomoReport\Exception\InvalidIdSiteException;
+use MatomoReport\Exception\InvalidRequestException;
+use MatomoReport\Exception\InvalidTokenException;
 
 class ReportFetcher{
 
-    use Actions;
+    use Actions, Contents, Goals;
 
     /**
      * @var string $requestHost
@@ -31,7 +33,7 @@ class ReportFetcher{
 
     public function __construct(string $requestHost,string $idSite,string $token)
     {
-        $this->requestHost = $requestHost;
+        $this->requestHost = $requestHost.'/index.php';
         $this->token = $token;
         $this->idSite = $idSite;
         $this->client = new Client();
@@ -53,9 +55,12 @@ class ReportFetcher{
         if (empty($this->idSite)) {
             throw new InvalidIdSiteException();
         }
+        if (empty($params['method'])) {
+            throw new InvalidRequestException();
+        }
         $params['idSite'] = $this->idSite;
         $params['token_auth'] = $this->token;
-
+        //var_dump($this->requestHost.'?'.http_build_query($params));
         $response = $this->client->request($method,$this->requestHost,[
             'query' => $params,
         ]);

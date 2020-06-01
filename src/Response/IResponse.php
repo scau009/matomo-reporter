@@ -1,5 +1,5 @@
 <?php
-namespace MatmomoReport\Response;
+namespace MatomoReport\Response;
 
 
 interface IResponse

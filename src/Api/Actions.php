@@ -1,8 +1,12 @@
 <?php
-namespace MatmomoReport\Api;
+namespace MatomoReport\Api;
 
-use MatmomoReport\Request\ActionRequests\GetSiteSearchKeywordsRequest;
-use MatmomoReport\Response\ActionResponses\GetSiteSearchKeywordsResponse;
+use MatomoReport\Request\Actions\GetSiteSearchCategoriesRequest;
+use MatomoReport\Request\Actions\GetSiteSearchKeywordsRequest;
+use MatomoReport\Request\Actions\GetSiteSearchNoResultKeywordsRequest;
+use MatomoReport\Response\Actions\GetSiteSearchCategoriesResponse;
+use MatomoReport\Response\Actions\GetSiteSearchKeywordsResponse;
+use MatomoReport\Response\Actions\GetSiteSearchNoResultKeywordsResponse;
 
 trait Actions
 {
@@ -12,13 +16,15 @@ trait Actions
         return $request->getResponse($content);
     }
 
-    public function getSiteSearchNoResultKeywords()
-    {
-        //todo
-    }
+//    public function getSiteSearchNoResultKeywords(GetSiteSearchNoResultKeywordsRequest $request) :GetSiteSearchNoResultKeywordsResponse
+//    {
+//        $content = $this->fetch($request->getRequestMethod(), $request->getAllParams());
+//        return $request->getResponse($content);
+//    }
 
-    public function getSiteSearchCategories()
-    {
-        //todo
-    }
+//    public function getSiteSearchCategories(GetSiteSearchCategoriesRequest $request) :GetSiteSearchCategoriesResponse
+//    {
+//        $content = $this->fetch($request->getRequestMethod(), $request->getAllParams());
+//        return $request->getResponse($content);
+//    }
 }

@@ -1,7 +1,7 @@
 <?php
-namespace MatmomoReport\Entity\Action;
+namespace MatomoReport\Entity\Actions;
 
-class GetSiteSearchKeywordsEntity
+class SiteSearchKeywordsEntity
 {
     private $label;
 

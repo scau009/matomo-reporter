@@ -1,5 +1,5 @@
 <?php
-namespace MatmomoReport\Exception;
+namespace MatomoReport\Exception;
 
 class BaseException extends \Exception
 {

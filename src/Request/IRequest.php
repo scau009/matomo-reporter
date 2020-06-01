@@ -1,11 +1,11 @@
 <?php
-namespace MatmomoReport\Request;
+namespace MatomoReport\Request;
 
 
-use MatmomoReport\ReportFetcher;
-use MatmomoReport\Response\IResponse;
+use MatomoReport\ReportFetcher;
+use MatomoReport\Response\IResponse;
 
 interface IRequest
 {
-    public function getResponse(string $content);
+    public function getResponse(string $fetchResult = '');
 }
