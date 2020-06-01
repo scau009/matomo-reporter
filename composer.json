@@ -1,6 +1,7 @@
 {
     "name": "gongzirong/matomo-reporter",
     "description": "a matomo report sdk",
+    "license": "MIT",
     "authors": [
         {
             "name": "bear",
